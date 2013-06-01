@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+<h:head>
+<title>JSF Database APP</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<h1 class="title">Basic Auction System</h1>
+
+
+<div align="center">
+<fieldset>
+<legend>List of Items</legend>
+<div align="center">
+	
+</div>
+		
+</fieldset>
+	<!-- End of main fieldset  -->
+</div >
+		
+		<!-- Here should bo view elements which will be used to get data from user  -->
+
+			<div align="center">
+			<p>		
+					<h:form>
+					Login:
+					<h:inputText value="#{itemBean.login}"></h:inputText></br>
+					
+					Password:
+					<h:inputSecret value="#{itemBean.password}"></h:inputSecret>
+					<h:commandButton value="Show Current Balance" action="#{itemBean.showBalance}">
+					</h:commandButton>
+					</h:form>
+			</p>
+			</div> 
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><hr/>
+ <b>MBerendt</b>
+</h:body>
+</html>

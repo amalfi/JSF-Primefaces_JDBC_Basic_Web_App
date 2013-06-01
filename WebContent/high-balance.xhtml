@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Your Balance</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<div align="center">
+<h1 class="title">Your Balance</h1>
+<br/>
+<img src="./images/sailing.gif"/><br clear="all"/>
+<h2>It is an honor to serve you,
+#{bankingBean.customer.firstName} #{bankingBean.customer.lastName}!
+</h2>
+<h2>
+Since you are one of our most valued customers, we would like
+to offer you the opportunity to spend a mere fraction of your
+$#{bankingBean.customer.balanceNoSign} on a boat worthy of your status. 
+Please visit <a href="http://overpricedyachts.com">our boat store</a>
+for more information.  
+</h2>
+</div></h:body></html>

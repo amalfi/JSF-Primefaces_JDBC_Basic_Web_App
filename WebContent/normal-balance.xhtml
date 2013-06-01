@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+<h:head><title>Your Balance</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+ <h:form>
+		<p:layout fullPage="true">  		  
+		    <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">  
+		        <div align="center">
+		        <h:outputText value="User Administration panel" />  
+		        </div>
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">  
+		        <h:outputText value="Here is list of items in basket" /> 
+		        
+		        <h:form>  
+								    <p:dataTable var="basket" value="#{itemBean.basket_list}">  
+								   
+								        <p:column headerText="Item Name">  
+								            <h:outputText value="#{basket.name}" />  
+								        </p:column>  
+				  
+								    </p:dataTable>  
+								</h:form>  
+		        
+		         
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">  
+		        <h:outputText value="Here you can see some details about your account" />  
+				Your account Balance is correct. You can add some product into your basket.
+				<ul>
+				  <li>First name: #{bankingBean.customer.firstName}</li>
+				  <li>Last name: #{bankingBean.customer.lastName}</li>  
+				  <li>ID: #{bankingBean.customer.id}</li>
+				  <li>Balance: $#{bankingBean.customer.balanceNoSign}</li>
+				</ul>  
+		         
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">  
+		        <h:outputText value="Select item from list, and click 'Add to your cart' to buy item" />  
+	<!--CONTENT OF RIGHT UNIT BEGIN --> 
+				<h:form>  
+						<p:dataTable var="item" value="#{itemBean.items_list}">     
+							 <p:column headerText="Item Name">  
+								       <h:outputText value="#{item.name}"/>  
+								       		<h:commandButton action="#{itemBean.Add}" value="Add" >
+						  						<f:setPropertyActionListener value="#{item.Name}" target="#{itemBean.selected_item}" />
+						  	  			</h:commandButton>
+							 </p:column>  
+						 </p:dataTable>  
+				</h:form>  
+						
+	<!--END OF RIGHT UNIT CONTENT -->
+		    </p:layoutUnit>  
+		  
+		    <p:layoutUnit position="center">  
+		        <h:form>  
+		           Here is full list of all items in the system. You can add any of them using picker on the right side 
+					<div align="center">
+							<h:form>  
+								    <p:dataTable var="item" value="#{itemBean.items_list}">  
+								   
+								        <p:column headerText="Item Name">  
+								            <h:outputText value="#{item.name}" />  
+								        </p:column>  
+								  
+								        <p:column headerText="Item description">  
+								            <h:outputText value="#{item.description}" />  
+								        </p:column>  
+								  
+								        <p:column headerText="Item price">  
+								            <h:outputText value="#{item.price}" />  
+								        </p:column>  
+								  
+								    </p:dataTable>  
+								</h:form>  
+					</div>
+		        </h:form>  
+		  	  </p:layoutUnit>    
+			</p:layout>  
+
+</h:form>
+</h:body>
+</html>
