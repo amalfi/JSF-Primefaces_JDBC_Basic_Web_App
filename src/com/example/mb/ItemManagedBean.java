@@ -1,5 +1,6 @@
 package com.example.mb;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.primefaces.*;
+import org.primefaces.event.RowEditEvent;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 @ManagedBean(name="itemBean")
 @SessionScoped
@@ -151,15 +152,13 @@ public class ItemManagedBean implements Serializable{
 						}
 				return basket_list;	
 		}
-		
-		
-		public String Add(){
-			
-		    //selected_item=items_list.get(0).getName().toString();
+//----------------------------------------------------------------------
+		/*
+		public void Add() throws IOException
+		{	
 			items_in_basket.add(selected_item);
 			System.out.println(selected_item);
-			return "";
-		}
+		}*/
 		
 	/*	public void AddToBasket() //not used right now 
 		{	
