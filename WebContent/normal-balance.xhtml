@@ -51,14 +51,14 @@
 				<h:form>  
 					
 					<p:dataTable id="basketTable" var="item" 
-					value="#{itemBean.items_list}" 
+					value="#{basketManagedBean.items_list}" 
 					rowKey="#{item.name}"
-					selection="#{itemBean.selected_item}">
+					selection="#{basketManagedBean.selectedItem}">
 						<p:column>
 								<p:commandButton value="Select" update=":mainForm:display" 
-								oncomplete="carDialog.show()">
+								oncomplete="itemDialog.show()"> <!--nalezy wczesniej zdefiniowac itemDialog w widoku -->
 									<f:setPropertyActionListener value="#{item}"
-									target="#{itemBean.selected_item}" />
+									target="#{basketManagedBean.selectedItem}" />
 								</p:commandButton>
 						</p:column>
 					</p:dataTable>

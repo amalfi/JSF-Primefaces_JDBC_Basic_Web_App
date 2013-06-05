@@ -12,55 +12,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 @FacesConverter(value = "org.primefaces.cookbook.converter.CarConverter")
 public class ItemConverter implements Converter{
-	
-	 public static Map<String, Item> items = new HashMap<String, Item>();
+	//public ArrayList<Item> items_list2 = new ArrayList<Item>();
+	public static Map<String, String> items = new HashMap<String, String>();
 
 	    static {
 	    	
-		/*    	Connection con = ConnectionClass.getConnection();
-		    	if(con==null)
-					try {
-						throw new SQLException("Can't get database connection");
-				
-						PreparedStatement ps 
-						= con.prepareStatement(
-						   "select id, name, description, price from projekt"); 
-					ResultSet result =  ps.executeQuery();
-	
-							while(result.next())
-							{
-								Item item = new Item();*/
-								/*
-								    cars.put("CC", new Item("CC", 2008));
-        cars.put("Golf", new Item("Golf", 1974));
-        cars.put("Jetta", new Item("Jetta", 1979));
-        cars.put("Passat", new Item("Passat", 1973));
-        cars.put("Polo", new Item("Polo", 1975));
-        cars.put("Scirocco", new Item("Scirocco", 1974));
-        cars.put("Touareg", new Item("Touareg", 2002)); 
-								 
-								 */
-								
-		/*						
-								item.setId(result.getInt("id"));
-								item.setDescription(result.getString("description"));
-								item.setName(result.getString("name"));
-								item.setPrice(result.getInt("price"));
-								//store all data into a List
-								items_list.add(item);
-							}
-					return items_list;	
-					
-					} catch (SQLException e) {
-						e.printStackTrace();
+	    	Connection con = ConnectionClass.getConnection(); 
+			if(con==null)
+				throw new SQLException("Can't get database connection");
+	 
+			PreparedStatement ps 
+				= con.prepareStatement(
+				   "select name, description, price from projekt"); 
+			ResultSet result =  ps.executeQuery();
+
+					while(result.next())
+					{
+						Item item = new Item();
+						
+						items.put("Name", result.getString("Name"));
+						items.put("Description", result.getString("Description"));
+						items.put("Price", Integer.toString(result.getInt("Price")));
 					}
-	    */
 	    }
 
 	    public Object getAsObject(final FacesContext fc, final UIComponent component, final String value) {
