@@ -1,81 +1,121 @@
 package com.example.mb;
 
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import org.primefaces.event.RowEditEvent;
+@ManagedBean
+@SessionScoped
+public class BasketManagedBean implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 
-public class BasketManagedBean {
-
-
-    private List<Item> items;
+	private  ArrayList<Item>items = new ArrayList<Item>();
+	private ArrayList<Item> selectedItems = new ArrayList<Item>();
     private Item selectedItem;
-    private Item[] selectedItems;
-    private List<Item> selectedItemsList;
-    private SelectItem[] itemNamesOptions;
-
-    public BasketManagedBean() {
-        items = new ArrayList<Item>(ItemConverter.items.values());
-    }
+    //private Item[] selectedItems;
     
-    public String[] getItemNames() {
-        return ItemConverter.items.keySet().toArray(new String[0]);
-    }
+    public BasketManagedBean() throws SQLException 
+	{  
+		items=BasketTableList();
+		//selectedItems=AddToBasket();
+	}
+    
+//--------------------------------------------------------------
+    
+		public Item getSelectedItem() 
+		{
+			return selectedItem;
+		}
+		public ArrayList<Item> getItems() {
+			return items;
+		}
 
-    public SelectItem[] getItemNamesAsOptions() {
-        itemNamesOptions = createFilterOptions(ItemConverter.items.keySet().toArray(new String[0]));
-        return itemNamesOptions;
-    }
 
-    private SelectItem[] createFilterOptions(String[] data) {
-        SelectItem[] options = new SelectItem[data.length + 1];
+		public void setItems(ArrayList<Item> items) {
+			this.items = items;
+		}
 
-        options[0] = new SelectItem("", "Select");
-        for(int i = 0; i < data.length; i++) {
-            options[i + 1] = new SelectItem(data[i], data[i]);
-        }
 
-        return options;
-    }
+		public void setSelectedItem(Item selectedItem) 
+		{
+			this.selectedItem = selectedItem;
+		}
+		
+		
+		public ArrayList<Item> getSelectedItems() {
+			return selectedItems;
+		}
 
-    public void onEdit(RowEditEvent event) {
-        MessageUtil.addInfoMessage("item.edit", ((Item) event.getObject()).getName());
-    }
+		public void setSelectedItems(ArrayList<Item> selectedItems) {
+			this.selectedItems = selectedItems;
+		}
 
-    public void onCancel(RowEditEvent event) {
-        MessageUtil.addInfoMessage("item.edit.cancelled", ((Item) event.getObject()).getName());
-    }
+		//-------------------------------------------------------------- 
+		public ArrayList<Item> BasketTableList() throws SQLException 
+		{  
+			try{
+	    		Connection conn = ConnectionClass.getConnection(); 
+	    		if(conn==null)
+				throw new SQLException("Can't get database connection");
 
-    public Item getSelectedItem() {
-        return selectedItem;
-    }
+				PreparedStatement ps 
+				= conn.prepareStatement( "select name from projekt"); 
+				ResultSet result =  ps.executeQuery();
 
-    public void setSelectedItem(Item selectedItem) {
-        this.selectedItem = selectedItem;
-    }
+						while(result.next())
+						{
+							Item item = new Item();
+							item.setName(result.getString("name"));
+							items.add(item);
+						}
 
-    public Item[] getSelectedItems() {
-        return selectedItems;
-    }
-
-    public void setSelectedItems(Item[] selectedItems) {
-        this.selectedItems =  selectedItems;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public List<Item> getSelectedCarsList() {
-        return  selectedItemsList;
-    }
-
-    public void setSelectedItemsList(List<Item> selectedCarsList) {
-        this. selectedItemsList =  selectedItemsList;
-    }
+			}
+			
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			 return items;
+		}
+//---------------------------------------------------------------------------------------------------------------
+	
+		
+		/*public void CreateItemBean()
+		{
+			selectedItems = new ArrayList<Item>();
+		}*/
+		
+		public String toBasket(ActionEvent actionEvent)
+		{
+			AddToBasket(actionEvent);
+			return null;
+		}
+		
+		public ArrayList<Item> AddToBasket(ActionEvent actionEvent)
+		{
+			System.out.println(" system a³t ");
+			selectedItems.add(selectedItem);
+			
+			 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, null,  null);  
+		        FacesContext.getCurrentInstance().addMessage(null, message); 
+			return selectedItems; 
+		}
+		
+		
 }
+	

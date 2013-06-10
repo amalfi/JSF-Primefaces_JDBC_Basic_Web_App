@@ -5,6 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"> 
 <h:head><title>Your Balance</title>
+ <p:growl id="growl" showDetail="true"/>
 <link href="./css/styles.css" 
       rel="stylesheet" type="text/css"/>
 </h:head>
@@ -47,18 +48,19 @@
 		  
 		    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">  
 		        <h:outputText value="Select item from list, and click 'Add to your cart' to buy item" />  
+		        
 	<!--CONTENT OF RIGHT UNIT BEGIN --> 
 				<h:form>  
 					
 					<p:dataTable id="basketTable" var="item" 
-					value="#{basketManagedBean.items_list}" 
+					value="#{basketTableController.items}" 
 					rowKey="#{item.name}"
-					selection="#{basketManagedBean.selectedItem}">
+					selection="#{basketTableController.selectedItem}">
 						<p:column>
 								<p:commandButton value="Select" update=":mainForm:display" 
 								oncomplete="itemDialog.show()"> <!--nalezy wczesniej zdefiniowac itemDialog w widoku -->
 									<f:setPropertyActionListener value="#{item}"
-									target="#{basketManagedBean.selectedItem}" />
+									target="#{basketTableController.selectedItem}" />
 								</p:commandButton>
 						</p:column>
 					</p:dataTable>

@@ -1,7 +1,10 @@
 package com.example.mb;
 
-public class Basket {
-	
+import java.io.Serializable;
+
+public class Basket implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Integer Id;
 	private String Name;
 	
