@@ -1,6 +1,7 @@
-package com.example.mb;
+package com.example.mb.Customer;
 
 import javax.faces.bean.*;
+
 
 @ManagedBean 
 public class BankingBean  { 
@@ -33,17 +34,29 @@ public class BankingBean  {
   }
 
   public String showBalance() {
-    if (!password.equals("secret")) {
+    if (!password.equals("secret")) 
+    {
       return("wrong-password");
     }
     customer = lookupService.findCustomer(customerId);
-    if (customer == null) {
+    
+    if (customer == null)
+    {
       return("unknown-customer");
-    } else if (customer.getBalance() < 0) {
+    } 
+   
+    else if (customer.getBalance() < 0) 
+    {
       return("negative-balance");
-    } else if (customer.getBalance() < 10000) {
+    } 
+    
+    else if (customer.getBalance() < 10000) 
+    {
       return("normal-balance");
-    } else {
+    } 
+    
+    else 
+    {
       return("high-balance");
     }
   }

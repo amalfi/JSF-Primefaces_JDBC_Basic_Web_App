@@ -1,4 +1,4 @@
-package com.example.mb;
+package com.example.mb.Customer;
 
 import java.util.*;
 
@@ -27,15 +27,19 @@ public class CustomerSimpleMap
    *  Returns null if there is no match.
    */
   
-  public Customer findCustomer(String id) {
-    if (id != null) {
-      return(customers.get(id.toLowerCase()));
-    } else {
-      return(null);
-    }
+  public Customer findCustomer(String id) 
+  {
+	    if (id != null) 
+	    {
+	      return(customers.get(id.toLowerCase()));
+	    } else
+	    {
+	      return(null);
+	    }
   }
 
-  private void addCustomer(Customer customer) {
+  private void addCustomer(Customer customer)
+  {
     customers.put(customer.getId(), customer);
   }
 }

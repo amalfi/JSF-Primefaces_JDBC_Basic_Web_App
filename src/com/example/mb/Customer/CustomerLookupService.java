@@ -1,4 +1,4 @@
-package com.example.mb;
+package com.example.mb.Customer;
 
 /** Main interface for classes that you retrieve bank
  *  customers by ID. This interface provides no way to

@@ -5,14 +5,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"> 
 <h:head><title>Your Balance</title>
- <p:growl id="growl" showDetail="true"/>
 <link href="./css/styles.css" 
       rel="stylesheet" type="text/css"/>
 </h:head>
 <h:body>
  <h:form>
 		<p:layout fullPage="true">  		  
-		    <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">  
+		    <p:layoutUnit position="north" size="100" header="Welcome to Administration Panel" resizable="true" closable="true" collapsible="true">  
 		        <div align="center">
 		        <h:outputText value="User Administration panel" />  
 		        </div>
@@ -34,7 +33,7 @@
 		         
 		    </p:layoutUnit>  
 		  
-		    <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">  
+		    <p:layoutUnit position="west" size="200" header="Account Details" resizable="true" closable="true" collapsible="true">  
 		        <h:outputText value="Here you can see some details about your account" />  
 				Your account Balance is correct. You can add some product into your basket.
 				<ul>
@@ -46,29 +45,21 @@
 		         
 		    </p:layoutUnit>  
 		  
-		    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">  
-		        <h:outputText value="Select item from list, and click 'Add to your cart' to buy item" />  
+		  
+		  
+		    <p:layoutUnit position="east" size="200" header="Buy something" resizable="true" closable="true" collapsible="true" effect="drop">  
+		        <h:outputText value="Click here to go into buying section" />  
 		        
 	<!--CONTENT OF RIGHT UNIT BEGIN --> 
-				<h:form>  
-					
-					<p:dataTable id="basketTable" var="item" 
-					value="#{basketTableController.items}" 
-					rowKey="#{item.name}"
-					selection="#{basketTableController.selectedItem}">
-						<p:column>
-								<p:commandButton value="Select" update=":mainForm:display" 
-								oncomplete="itemDialog.show()"> <!--nalezy wczesniej zdefiniowac itemDialog w widoku -->
-									<f:setPropertyActionListener value="#{item}"
-									target="#{basketTableController.selectedItem}" />
-								</p:commandButton>
-						</p:column>
-					</p:dataTable>
-									
-				</h:form>  
-						
+			
+			 <h:link value="click here" outcome="buy" />
+				 
 	<!--END OF RIGHT UNIT CONTENT -->
 		    </p:layoutUnit>  
+		    
+		    
+		    
+		    
 		  
 		    <p:layoutUnit position="center">  
 		        <h:form>  

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"> 
+<h:head>
+    <title>Welcome</title>
+</h:head>
+
+<h:body>
+  
+        <h3>Purchuase section</h3>
+         
+    <p:layout style="min-width:400px;min-height:200px;" id="layout">  
+    <p:layoutUnit position="west" resizable="true" size="200" minSize="100" maxSize="200">  
+       Select something from list and press button to buy
+       <br></br>
+       <br></br>
+       Click here to comeback to administration panel
+        <h:link value="click here" outcome="normal-balance" />
+    </p:layoutUnit>  
+  
+    <p:layoutUnit position="center">  
+   			
+   			<h:form>
+		    <h:selectOneMenu value="#{myBean.selectedItem}">
+		        <f:selectItems value="#{myBean.selectItems}" />
+		        <f:converter converterId="fooConverter" />
+		    </h:selectOneMenu>
+		    <h:commandButton value="submit" action="#{myBean.action}" />
+		    <h:messages />
+		</h:form>
+
+    </p:layoutUnit>  
+</p:layout>       
+         
+     
+    
+    
+</h:body>
+</html>
