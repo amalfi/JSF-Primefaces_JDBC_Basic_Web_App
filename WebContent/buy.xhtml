@@ -25,11 +25,13 @@
     <p:layoutUnit position="center">  
    			
    			<h:form>
+   			 <p:growl id="growl" showDetail="true" sticky="true" />  
+   			 
 		    <h:selectOneMenu value="#{myBean.selectedItem}">
 		        <f:selectItems value="#{myBean.selectItems}" />
 		        <f:converter converterId="fooConverter" />
 		    </h:selectOneMenu>
-		    <h:commandButton value="submit" action="#{myBean.action}" />
+		    <p:commandButton value="submit" actionListener="#{myBean.action}" update="growl"/>
 		    <h:messages />
 		</h:form>
 

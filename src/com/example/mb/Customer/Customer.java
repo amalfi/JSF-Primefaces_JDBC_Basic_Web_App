@@ -2,7 +2,8 @@ package com.example.mb.Customer;
 
 
 
-public class Customer {
+public class Customer {	
+	
   private final String id, firstName, lastName;
   private final double balance;
 

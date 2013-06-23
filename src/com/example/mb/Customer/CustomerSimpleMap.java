@@ -1,6 +1,12 @@
 package com.example.mb.Customer;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+
+import com.example.mb.ConnectionClass;
 
 /** A small table of banking customers for testing. */
 
@@ -9,19 +15,32 @@ public class CustomerSimpleMap
   private Map<String,Customer> customers;
 
 /*
- Good place to get data from database  
+
  */
-  
- 
-  public CustomerSimpleMap() {
-    customers = new HashMap<String,Customer>();
-    addCustomer(new Customer("id001", "Harry", 
-                             "Hacker", -3456.78));
-    addCustomer(new Customer("id002", "Codie",
-                             "Coder", 1234.56));
-    addCustomer(new Customer("id003", "Polly",
-                             "Programmer", 987654.32));
-  }
+
+  public CustomerSimpleMap() 
+  {
+	  
+    try{
+		Connection conn = ConnectionClass.getConnection(); 
+		if(conn==null)
+		throw new SQLException("Can't get database connection");
+
+		PreparedStatement ps 
+		= conn.prepareStatement( "SELECT customer_id, customer_name, customer_second_name, customer_balance FROM customer"); 
+		ResultSet result =  ps.executeQuery();
+		customers = new HashMap<String,Customer>();
+			while(result.next())
+				{
+				  addCustomer(new Customer(result.getString("customer_id"), result.getString("customer_name"), result.getString("customer_second_name"), result.getInt("customer_balance")));
+				}
+	}
+	
+	catch (SQLException e) 
+	{
+		e.printStackTrace();
+	}
+}
 
   /** Finds the customer with the given ID.
    *  Returns null if there is no match.
@@ -40,6 +59,6 @@ public class CustomerSimpleMap
 
   private void addCustomer(Customer customer)
   {
-    customers.put(customer.getId(), customer);
+   customers.put(customer.getId(), customer);
   }
 }

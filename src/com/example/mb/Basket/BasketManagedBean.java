@@ -41,16 +41,9 @@ public class BasketManagedBean implements Serializable
   
 	public BasketManagedBean() throws SQLException 
 	{  
-		//Items=FillItems();
 		
 		items=BasketTableList();
-		ItemsNames = items.toArray(new Item[items.size()]); //konwersja array listy do tablicy itemow
-		
-		
-		/*for(int x=0; x<=items.size(); x++)
-		{
-			ItemsNamesString[x]=ItemsNames[x].toString();
-		}*/
+		ItemsNames = items.toArray(new Item[items.size()]); 
 	}
     
 //--------------------------------------------------------------
@@ -114,10 +107,7 @@ public class BasketManagedBean implements Serializable
 							item.setName(result.getString("name"));
 							items.add(item);	
 						}
-				
-				
-				
-						 //because you cant use h:selectOneMenu or nothing like that without jsf2 custom converter, u need to implement one
+		 //because you cant use h:selectOneMenu or nothing like that without jsf2 custom converter, u need to implement one
 			}
 			
 			catch (SQLException e) 
