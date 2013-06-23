@@ -9,16 +9,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.primefaces.*;
+
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
 import com.example.mb.ConnectionClass;
 import com.example.mb.Basket.Basket;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name="itemBean")
-@SessionScoped
+@RequestScoped
 public class ItemManagedBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -107,6 +112,7 @@ public class ItemManagedBean implements Serializable{
 			}
 		
 //--------------------------------------------------------	Function which use "ConnectionClass" to connect and retrieve data from Postgres database
+		
 		public ArrayList<Item> ShowAllItems() throws SQLException
 		{ 
 				Connection con = ConnectionClass.getConnection(); 
@@ -133,6 +139,7 @@ public class ItemManagedBean implements Serializable{
 		}
 		
 //--------------------------------------------------------Function which will be used to retrieve items from Basket_Table
+		
 		public List<Basket> ShowAllFromBasket() throws SQLException
 		{ 
 				Connection con = ConnectionClass.getConnection(); 
@@ -154,7 +161,10 @@ public class ItemManagedBean implements Serializable{
 							basket_list.add(basket);
 						}
 				return basket_list;	
+				
 		}
 //----------------------------------------------------------------------
-
+	
+		 
+		 
 }

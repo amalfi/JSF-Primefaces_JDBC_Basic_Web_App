@@ -15,11 +15,16 @@
          
     <p:layout style="min-width:400px;min-height:200px;" id="layout">  
     <p:layoutUnit position="west" resizable="true" size="200" minSize="100" maxSize="200">  
+    <h:form>
        Select something from list and press button to buy
        <br></br>
        <br></br>
        Click here to comeback to administration panel
         <h:link value="click here" outcome="normal-balance" />
+        <br>
+        </br>
+      
+      </h:form>  
     </p:layoutUnit>  
   
     <p:layoutUnit position="center">  
@@ -31,9 +36,27 @@
 		        <f:selectItems value="#{myBean.selectItems}" />
 		        <f:converter converterId="fooConverter" />
 		    </h:selectOneMenu>
-		    <p:commandButton value="submit" actionListener="#{myBean.action}" update="growl"/>
+		    <p:commandButton value="Buy" actionListener="#{myBean.action}" update="growl"/>
 		    <h:messages />
+		    
+		  
+         <p:commandButton id="effectsDialogButton" value="Show Basket" onclick="dlg3.show();" type="button" />  
+		          
+		   									 <p:dialog header="Content of basket" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">  
+											     		<p:dataTable id="table" var="basket" value="#{itemBean.basket_list}">  
+													        <p:column headerText="Item Name">  
+														            <h:outputText value="#{basket.name}" />  
+													        </p:column>  
+													    </p:dataTable>   
+											</p:dialog>  
+		    
+		     
 		</h:form>
+		
+		
+		
+					   
+					   						
 
     </p:layoutUnit>  
 </p:layout>       

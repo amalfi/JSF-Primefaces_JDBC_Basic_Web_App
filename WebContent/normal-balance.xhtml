@@ -20,15 +20,16 @@
 		    <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">  
 		        <h:outputText value="Here is list of items in basket" /> 
 		        
-		        <h:form>  
-								    <p:dataTable var="basket" value="#{itemBean.basket_list}">  
-								   
-								        <p:column headerText="Item Name">  
-								            <h:outputText value="#{basket.name}" />  
-								        </p:column>  
-				  
-								    </p:dataTable>  
-								</h:form>  
+		        		       <br></br>
+					<p:dataTable id="table" var="basket" value="#{itemBean.basket_list}">  
+													        <p:column headerText="Item Name">  
+														            <h:outputText value="#{basket.name}" />  
+													        </p:column>  
+													    </p:dataTable>  
+		        
+		        <h:form> 
+					
+			  </h:form>  
 		        
 		         
 		    </p:layoutUnit>  

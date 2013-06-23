@@ -15,10 +15,13 @@
 #{bankingBean.customer.firstName} #{bankingBean.customer.lastName}!
 </h2>
 <h2>
+
+<h:form>
 Since you are one of our most valued customers, we would like
 to offer you the opportunity to spend a mere fraction of your
 $#{bankingBean.customer.balanceNoSign} on a boat worthy of your status. 
-Please visit <a href="http://overpricedyachts.com">our boat store</a>
-for more information.  
+Click here :  <h:link value="click here" outcome="normal-balance" /> to go into administration panel
+</h:form>
+
 </h2>
 </div></h:body></html>

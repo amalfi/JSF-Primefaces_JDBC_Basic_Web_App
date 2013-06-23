@@ -8,15 +8,11 @@ import java.util.*;
 
 import com.example.mb.ConnectionClass;
 
-/** A small table of banking customers for testing. */
 
 public class CustomerSimpleMap 
        implements CustomerLookupService {
   private Map<String,Customer> customers;
 
-/*
-
- */
 
   public CustomerSimpleMap() 
   {
@@ -42,9 +38,6 @@ public class CustomerSimpleMap
 	}
 }
 
-  /** Finds the customer with the given ID.
-   *  Returns null if there is no match.
-   */
   
   public Customer findCustomer(String id) 
   {
